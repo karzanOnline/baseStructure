@@ -4,7 +4,7 @@
 * set数据类型
 * by caozheng
 * */
-function setFuc(){
+function Set(){
     /*
     * 用数组模拟集合*/
     var items = {};
@@ -51,7 +51,7 @@ function setFuc(){
     };
     /*获取集合所有属性*/
     this.keys = function(){
-        return Object.keys(items)
+        return Object.keys(this.items)
     };
     /*获取集合所有的值*/
     this.values = function(){
@@ -62,42 +62,54 @@ function setFuc(){
     };
     /*获取两个集合的并集*/
     this.union = function(otherSet){
-        var result = this.keys();
-        var tempArr = Object.keys(otherSet);
-        tempArr.forEach(function(value,index){
-            result.add(tempArr[value])
-        })
+        var result = new Set();
+        this.keys().forEach(function(value,index){
+            result.add(value)
+        });
+        otherSet.keys().forEach(function(value){
+            result.add(value)
+        });
+        return result
     };
     /*获取两个集合的交集*/
     this.intersection = function(otherSet){
-        var Arryx = this.keys();
-        var ArryY = Object.keys(otherSet);
         var tempArray = [];
-        var temp = new Set();
+        var tempSet = new Set();
         /*赋值给最大的数组*/
-        (Arryx.size()>=ArryY.size())?(tempArray = Arryx): (tempArray = ArryY);
+        (this.size()>=otherSet.size())?(tempArray = this.keys()): (tempArray = otherSet.keys());
         tempArray.forEach(function(val){
             if(otherSet.has(val)){
-                temp.add(val);
+                tempSet.add(val);
             }
-        })
+        });
+        return tempSet
     };
     /*获取两个集合的差集*/
     this.difference = function(otherSet){
-        var selfArr = this.keys();
-        var otherArr = Object.keys(otherSet);
+        var tempArray = [];
         var tempSet = new Set();
         /*赋值给最大的数组*/
-        (Arryx.size()>=ArryY.size())?(tempArray = Arryx): (tempArray = ArryY);
+        (this.size()>=otherSet.size())?(tempArray = this.keys()): (tempArray = otherSet.keys());
         tempArray.forEach(function(val){
             if(!otherSet.has(val)){
                 tempSet.add(val);
             }
-        })
+        });
+        return tempSet
     };
     /*判断传入集合是否为当前集合的子集*/
     this.subset = function(otherSet){
-        //todo waite
+        var otherSetKeys = otherSet.keys();
+        if(otherSetKeys<this.keys()){
+            return false
+        }else{
+            for(var i =0;i<otherSetKeys;i++){
+                if(this.items.has(otherSetKeys[i])){
+                    return false
+                }
+            }
+        }
+        return true
     }
 
 }
