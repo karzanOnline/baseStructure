@@ -16,7 +16,7 @@ Array.prototype.flattenings = function(){
     var _this = this;
     return recursion(_this);
 };
-
+/**/
 function recursion (arr){
     var tempArray = [];
     if(arr instanceof Array){
@@ -37,6 +37,7 @@ function recursionConcat (tempArray,array){
         /*当前循环对象为数组*/
         for(var i = 0; i<array.length;i++){
             if(array[i] instanceof Array){
+                /*触发递归*/
                 tempArray = recursionConcat(tempArray,array[i]);
             }else{
                 tempArray = tempArray.concat(array[i]);
