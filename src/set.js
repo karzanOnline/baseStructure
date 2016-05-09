@@ -42,7 +42,7 @@ function Set(){
         /*第二种方法
         *  -.-直接清空 爱咋咋地
         * */
-        //items ={}
+        //this.items ={}
     };
     /*集合大小*/
     this.size =  function(){
@@ -51,7 +51,8 @@ function Set(){
     };
     /*获取集合所有属性*/
     this.keys = function(){
-        return Object.keys(this.items)
+        var _this = this;
+        return Object.keys(_this.items)
     };
     /*获取集合所有的值*/
     this.values = function(){
@@ -73,10 +74,11 @@ function Set(){
     };
     /*获取两个集合的交集*/
     this.intersection = function(otherSet){
+        var _this = this;
         var tempArray = [];
         var tempSet = new Set();
         /*赋值给最大的数组*/
-        (this.size()>=otherSet.size())?(tempArray = this.keys()): (tempArray = otherSet.keys());
+        (_this.size()>=otherSet.size())?(tempArray = _this.keys()): (tempArray = otherSet.keys());
         tempArray.forEach(function(val){
             if(otherSet.has(val)){
                 tempSet.add(val);
@@ -86,10 +88,11 @@ function Set(){
     };
     /*获取两个集合的差集*/
     this.difference = function(otherSet){
+        var _this = this;
         var tempArray = [];
         var tempSet = new Set();
         /*赋值给最大的数组*/
-        (this.size()>=otherSet.size())?(tempArray = this.keys()): (tempArray = otherSet.keys());
+        (_this.size()>=otherSet.size())?(tempArray = _this.keys()): (tempArray = otherSet.keys());
         tempArray.forEach(function(val){
             if(!otherSet.has(val)){
                 tempSet.add(val);
