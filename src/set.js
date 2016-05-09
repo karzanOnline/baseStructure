@@ -56,10 +56,10 @@ function Set(){
     };
     /*获取集合所有的值*/
     this.values = function(){
-        var arr = Object.keys(items).map(function(val){
+        var array = Object.keys(items).map(function(val){
             return items[val]
         });
-        return arr
+        return array
     };
     /*获取两个集合的并集*/
     this.union = function(otherSet){
