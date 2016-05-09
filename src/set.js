@@ -99,12 +99,13 @@ function Set(){
     };
     /*判断传入集合是否为当前集合的子集*/
     this.subset = function(otherSet){
+        var _this = this;
         var otherSetKeys = otherSet.keys();
-        if(otherSetKeys<this.keys()){
+        if(otherSetKeys<_this.keys()){
             return false
         }else{
             for(var i =0;i<otherSetKeys;i++){
-                if(this.items.has(otherSetKeys[i])){
+                if(!_this.items.has(otherSetKeys[i])){
                     return false
                 }
             }
