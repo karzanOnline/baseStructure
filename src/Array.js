@@ -14,39 +14,20 @@ Array.prototype.flattening = function(){
 /*多维数组扁平化*/
 Array.prototype.flattenings = function(){
     var _this = this;
-    return recursion(_this);
+    var tempArray = [];
+    return recursion(tempArray,_this);
 };
 /**/
-function recursion (arr){
-    //TODO后期优化
-    var tempArray = [];
+function recursion (tempArray,arr){
+    //TODO后期性能优化
     if(arr instanceof Array){
         for(var i =0;i<arr.length;i++){
-            if(arr instanceof Array){
-                tempArray = recursionConcat(tempArray,arr[i])
+            if(arr[i] instanceof Array){
+                tempArray = recursion(tempArray,arr[i])
             }else{
                 tempArray = tempArray.concat(arr[i]);
             }
         }
-        return tempArray
-    }else{
-        return tempArray
     }
-}
-function recursionConcat (tempArray,array){
-    //TODO 后期优化
-    if(array instanceof Array){
-        /*当前循环对象为数组*/
-        for(var i = 0; i<array.length;i++){
-            if(array[i] instanceof Array){
-                /*触发递归*/
-                tempArray = recursionConcat(tempArray,array[i]);
-            }else{
-                tempArray = tempArray.concat(array[i]);
-            }
-        }
-        return tempArray
-    }else{
-        return tempArray
-    }
+    return tempArray
 }
