@@ -48,7 +48,6 @@ Array.prototype.deepCopy = function(){
     }
     /*数组去重*/
     for(var z=resultArr.length-1;z>=0;z--){
-        /*标记是否遇到重复的*/
         for(var m =z-1;m>=0;m--){
             if(resultArr[z]==resultArr[m]){
                 resultArr.splice(m,1);
