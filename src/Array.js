@@ -38,7 +38,6 @@ Array.prototype.deepCopy = function(){
     var resultArr = [];
     var index = _this.length;
     var args = [].slice.call(arguments);
-    var newArray = [];
     /*数组本身值copy*/
     for(var i =0;i<index;i++){
         resultArr[i] = _this[i];
@@ -48,9 +47,9 @@ Array.prototype.deepCopy = function(){
         resultArr[index+j] = args[j];
     }
     /*数组去重*/
-    for(var z=resultArr.length;z>=0;i--){
+    for(var z=resultArr.length-1;z>=0;z--){
         /*标记是否遇到重复的*/
-        for(var m =resultArr.length-1;m>=0;i--){
+        for(var m =z-1;m>=0;m--){
             if(resultArr[z]==resultArr[m]){
                 resultArr.splice(m,1);
             }
