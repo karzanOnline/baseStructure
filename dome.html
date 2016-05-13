@@ -11,10 +11,12 @@
 
 <script >
     (function(window){
-        var arr = [[1,2],[2,3],[[2,3]],[[2,6,[9]]]];
-        var result = arr.flattenings();
+//        var arr = [[1,2],[2,3],[[2,3]],[[2,6,[9]]]];
+//        var result = arr.flattenings();
+//        console.log(result);
+        var deepArr = [1,2];
+        var result = deepArr.deepCopy([3,6],[7,9],[[22,33],90],{a:'55'});
         console.log(result)
-
     })()
 </script>
 </body>
