@@ -32,6 +32,7 @@ function recursion (tempArray,arr){
     return tempArray
 }
 /*数组深度拷贝*/
+//数组扁平化+去重
 Array.prototype.deepCopy = function(){
     /*参数数组化*/
     var _this = this;
@@ -56,3 +57,20 @@ Array.prototype.deepCopy = function(){
     }
     return resultArr
 };
+//不限层级数组深度拷贝 尾递归
+//重新开辟一块内存
+Array.prototype.extendArray = function(arr){
+    return function circulation (arr){
+        var newArr = [];
+        if (arr instanceof Array){
+            for (var i= 0;i<arr.length;i++){
+                if (arr[i] instanceof  Array){
+                    newArr[i] = circulation(arr[i])
+                }else {
+                    newArr[i] = arr[i]
+                }
+            }
+            return newArr
+        }
+    }
+}
