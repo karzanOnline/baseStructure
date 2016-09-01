@@ -6,6 +6,7 @@
     <script src="src/Array.js"></script>
     <script src="src/Currying.js"></script>
     <script src="src/factory.js"></script>
+    <script src="src/base.js"></script>
 </head>
 <body>
 <button class="switch">空调按钮</button>
@@ -20,9 +21,21 @@
 //        var result = deepArr.deepCopy([3,6],[7,9],[7,9],[[22,33],90],{a:'55'});
 //        console.log(result)
 //    })()
-document.querySelector(".switch").addEventListener("click",function(){
-    switches();  //模仿你切换空调的模式
-},false);
+//document.querySelector(".switch").addEventListener("click",function(){
+//    switches();  //模仿你切换空调的模式
+//},false);
+    (function (win) {
+        /*test */
+        var po =  win.location.search,
+            url = win.location.href,
+            obj = {name : 'caozheng', age : '23'},
+            tempValue;
+        url.indexOf(po)>-1&&(tempValue = url.slice(0,url.indexOf(po)));
+        po.indexOf('name')<=-1&&(win.location.href = tempValue+'?'+'obj='+JSON.stringify(obj));
+        console.log(window);
+        var obj = window.toolArg.getUrlToJson('obj');
+        console.log(obj.name);
+    })(window)
 </script>
 </body>
 </html>
